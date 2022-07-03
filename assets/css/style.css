@@ -4,6 +4,11 @@ body {
   line-height: 1;
 }
 
+main {
+  width: 90%;
+  margin: 2rem auto;
+}
+
 textarea {
   background: transparent;
   border: none;
@@ -26,7 +31,7 @@ textarea {
 }
 
 .time-block {
-  text-align: center;
+  position: center;
   border-radius: 15px;
 }
 
@@ -54,8 +59,12 @@ textarea {
   background-color: #77dd77;
 }
 
+
+/* Need to refactor later */
 .saveBtn {
-  border-left: 1px solid black;
+  border: none;
+  border-left: 1px solid;
+  border-bottom: 1px solid;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
