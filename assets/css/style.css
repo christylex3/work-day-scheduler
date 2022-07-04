@@ -4,10 +4,6 @@ body {
   line-height: 1;
 }
 
-main {
-  margin: 2rem auto;
-}
-
 time {
   padding-top: 1rem;
 }
@@ -34,14 +30,14 @@ textarea {
   white-space: pre-wrap;
 }
 
-.time-block {
+/* .time-block {
   position: center;
   border-radius: 15px;
-}
+} */
 
 .row {
   white-space: pre-wrap;
-  height: 20rem;
+  height: 60vh;
   border-top: 1px solid white;
   margin: auto;
 }
