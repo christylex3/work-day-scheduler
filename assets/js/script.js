@@ -1,30 +1,38 @@
 var currentDate;
 var hours = ["9", "10", "11", "12", "1", "2", "3", "4", "5"];
-console.log(moment().hour());
+console.log(moment());
 // Displays current date at top
 function displayDate () {
-    currentDate.textContent = moment().format("dddd, MMM Do");
-    // $("#currentDay").text(currentDate);
+    currentDate = moment().format("dddd, MMM Do");
+    $("#currentDay").text(currentDate);
 }
 
 function coloringTimeblock () {
 
-    var comparedHour = moment().hour();
+    var currentHour = moment().hour();
 
     // if this is the hour that's happening, 
     for (var i = 0; i > hours.length; i++) {
-        if (comparedHour !== hours[i]) {
-            var timeblock = document.querySelector("#" + comparedHour);
+        var timeblock = document.querySelector("#" + currentHour);
+        if (currentHour !== hours[i]) {
+            // if the hour is in the past, how does it know which hour is forward?
+            // currentHour < hours[i]? What about 12PM < 3PM?
             timeblock.classList.add("past");
             timeblock.classList.remove("present");
             timeblock.classList.remove("future");
-        } else if () {
-            
+        }
+        if (currentHour === hours[i]) {
+            timeblock.classList.add("present");
+            timeblock.classList.remove("past");
+            timeblock.classList.remove("future");
+            // for () {
+
+            // }
         }
     }
-    if (currentDate.moment() == ) {
-        // if 
-    }
+//     if (currentDate.moment() == ) {
+//         // if 
+//     }
 }
 
 displayDate();
