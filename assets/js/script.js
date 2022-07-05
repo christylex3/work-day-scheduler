@@ -8,37 +8,38 @@ function displayDate () {
     $("#currentDay").text(currentDate);
 }
 
-
+// Marking timeblocks as "past", "present", or "future"
 function coloringTimeblock () {
+
+    // Variable that stores the current hour by military time
     var currentHour = moment().hour();
-    // if this is the hour that's happening, 
+
+    // Loops through each timeblock 
     for (var i = 0; i < hours.length; i++) {
         var timeblock = document.querySelector(timeblocksId[i]);
-
-        // If the 
+        
+        // If the current hour does not equate to the timeblock's hour, set timeblock as "past"
         if (currentHour !== hours[i]) {
             timeblock.classList.add("past");
             timeblock.classList.remove("present");
             timeblock.classList.remove("future");
         }
+
+        // If the current hour does equate to the timeblock's hour, set timeblock as "present"
         if (currentHour === hours[i]) {
             timeblock.classList.add("present");
             timeblock.classList.remove("past");
             timeblock.classList.remove("future");
         }
-        if (currentHour > hours[i]) {
 
+        // If the current hour is less than timeblock's hour, set timeblock as "future"
+        if (currentHour < hours[i]) {
+            timeblock.classList.add("future");
+            timeblock.classList.remove("present");
+            timeblock.classList.remove("past");
         }
     }
 }
-
-// testing hour
-// var testingHour = moment().hour();
-// $("#testing").text("testingHour:" + testingHour);
-
-// var testingHour2 = moment().format();
-// var timeblock = document.getElementById("twoOClock");
-// console.log(timeblock);
 
 displayDate();
 coloringTimeblock();
