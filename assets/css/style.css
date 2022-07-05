@@ -37,7 +37,7 @@ textarea {
 
 .row {
   white-space: pre-wrap;
-  height: 60vh;
+  height: 5rem;
   border-top: 1px solid white;
   margin: auto;
 }
@@ -76,4 +76,5 @@ textarea {
 .saveBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
+  color: black;
 }

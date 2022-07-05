@@ -1,9 +1,57 @@
 var currentDate;
 var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 var timeblocksId = ["#nineOClock", "#tenOClock", "#elevenOClock", "#twelveOClock", "#oneOClock", "#twoOClock", "#threeOClock", "#fourOClock", "#fiveOClock"];
+var saveButton1 = document.querySelector("#saveButton1");
+var saveButton2 = document.querySelector("#saveButton2");
+var saveButton3 = document.querySelector("#saveButton3");
+var saveButton4 = document.querySelector("#saveButton4");
+var saveButton5 = document.querySelector("#saveButton5");
+var saveButton6 = document.querySelector("#saveButton6");
+var saveButton7 = document.querySelector("#saveButton7");
+var saveButton8 = document.querySelector("#saveButton8");
+var saveButton9 = document.querySelector("#saveButton9");
+
+if (saveButton1) {
+    saveButton1.addEventListener("click", saveInfo);
+}
+
+if (saveButton2) {
+    saveButton2.addEventListener("click", saveInfo);
+}
+
+if (saveButton3) {
+    saveButton3.addEventListener("click", saveInfo);
+}
+
+if (saveButton4) {
+    saveButton4.addEventListener("click", saveInfo);
+}
+
+if (saveButton5) {
+    saveButton5.addEventListener("click", saveInfo);
+}
+
+if (saveButton6) {
+    saveButton6.addEventListener("click", saveInfo);
+}
+
+if (saveButton7) {
+    saveButton7.addEventListener("click", saveInfo);
+}
+
+if (saveButton8) {
+    saveButton8.addEventListener("click", saveInfo);
+}
+
+if (saveButton9) {
+    saveButton9.addEventListener("click", saveInfo);
+}
+// $(saveButton).click(saveInfo()); ?
 
 // Displays current date at top
 function displayDate () {
+
+    // Formats currentDate to be "day of week, Month date of month" and appends this to the element with an ID of "currentDay"
     currentDate = moment().format("dddd, MMMM Do");
     $("#currentDay").text(currentDate);
 }
@@ -39,6 +87,29 @@ function coloringTimeblock () {
             timeblock.classList.remove("past");
         }
     }
+}
+
+
+// Make a function about local storage for text area and functionable save button
+// If they click the save button, take the save button within that element and 
+
+// TODO: Add textarea.value and textarea.id into local storage
+function saveInfo (event) {
+    console.log(this);
+    console.log($(this));
+    // console.log(event);
+    console.log($(this).parent()[0]);
+
+
+    var buttonParent = $(this).parent()[0]; //article
+    var textarea = buttonParent.querySelector("textarea");
+    console.log(textarea);
+
+    var value = textarea.value;
+    console.log(value);
+
+    var id = textarea.id;
+    console.log(id);
 }
 
 displayDate();
