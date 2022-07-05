@@ -8,25 +8,15 @@ function displayDate () {
     $("#currentDay").text(currentDate);
 }
 
-// testing hour
-var testingHour = moment().hour();
-$("#testing").text("testingHour:" + testingHour);
-
-var testingHour2 = moment().format();
-var timeblock = document.querySelector("time9");
-console.log(timeblock);
 
 function coloringTimeblock () {
-
-    var currentHour = moment().format();
-    
-
+    var currentHour = moment().hour();
     // if this is the hour that's happening, 
-    for (var i = 0; i > hours.length; i++) {
-        var timeblock = document.querySelector("#" + currentHour);
+    for (var i = 0; i < hours.length; i++) {
+        var timeblock = document.querySelector(timeblocksId[i]);
+
+        // If the 
         if (currentHour !== hours[i]) {
-            // if the hour is in the past, how does it know which hour is forward?
-            // currentHour < hours[i]? What about 12PM < 3PM?
             timeblock.classList.add("past");
             timeblock.classList.remove("present");
             timeblock.classList.remove("future");
@@ -35,15 +25,20 @@ function coloringTimeblock () {
             timeblock.classList.add("present");
             timeblock.classList.remove("past");
             timeblock.classList.remove("future");
-            // for () {
+        }
+        if (currentHour > hours[i]) {
 
-            // }
         }
     }
-//     if (currentDate.moment() == ) {
-//         // if 
-//     }
 }
+
+// testing hour
+// var testingHour = moment().hour();
+// $("#testing").text("testingHour:" + testingHour);
+
+// var testingHour2 = moment().format();
+// var timeblock = document.getElementById("twoOClock");
+// console.log(timeblock);
 
 displayDate();
 coloringTimeblock();
