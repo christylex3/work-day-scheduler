@@ -1,7 +1,6 @@
 var currentDate;
 var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
-var hoursId = ["nineOClock", "tenOClock", "elevenOClock", "twelveOClock", "oneOClock", "twoOClock", "threeOClock", "fourOClock", "fiveOClock"];
-var idTimeblocks = ["#9"];
+var timeblocksId = ["#nineOClock", "#tenOClock", "#elevenOClock", "#twelveOClock", "#oneOClock", "#twoOClock", "#threeOClock", "#fourOClock", "#fiveOClock"];
 
 // Displays current date at top
 function displayDate () {
