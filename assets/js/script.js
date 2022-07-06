@@ -1,7 +1,7 @@
 var currentDate;
 var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 var timeblocksId = ["#nineOClock", "#tenOClock", "#elevenOClock", "#twelveOClock", "#oneOClock", "#twoOClock", "#threeOClock", "#fourOClock", "#fiveOClock"];
-var saveButton = document.querySelector(".saveBtn");
+// var saveButton = document.querySelector(".saveBtn");
 var saveButton1 = document.querySelector("#saveButton1");
 var saveButton2 = document.querySelector("#saveButton2");
 var saveButton3 = document.querySelector("#saveButton3");
@@ -11,6 +11,7 @@ var saveButton6 = document.querySelector("#saveButton6");
 var saveButton7 = document.querySelector("#saveButton7");
 var saveButton8 = document.querySelector("#saveButton8");
 var saveButton9 = document.querySelector("#saveButton9");
+var schedule = new Array(9);
 
 if (saveButton1) {
     saveButton1.addEventListener("click", saveInfo);
@@ -91,6 +92,12 @@ function coloringTimeblock () {
     }
 }
 
+// Calls the function, coloringTimeblock, every second to update timeblock's colors
+function updatingTimeblocks () {
+    var timeInterval = setInterval(function() {
+        coloringTimeblock();
+    }, 1000); 
+}
 
 // function getPreviousInfo() {
 
@@ -106,26 +113,29 @@ function coloringTimeblock () {
 //     time.textContent = eventInfo;
     
 // }
-console.log();
+
 // TODO: Add textarea.value and textarea.id into local storage
-
-
 function saveInfo (event) {
 
     // Grabs the text area within the same container
     var buttonParent = $(this).parent()[0];
     var textarea = buttonParent.querySelector("textarea");
 
+    // localStorage - how to grab previous info
+
+
+
     for (var i = 0; i < schedule.length; i++) {
         if (schedule[i] !== null) {
             schedule = JSON.parse(localStorage.getItem("contents"));
+
         }
     }
     // var schedule = JSON.parse(localStorage.getItem("contents"));
 
-    if (schedule === null) {
-        schedule = new Array(9);
-    }
+    // if (schedule === null) {
+    //     schedule = new Array(9);
+    // }
     var textareaContent = {
         textEvent: textarea.value,
         time: textarea.id
