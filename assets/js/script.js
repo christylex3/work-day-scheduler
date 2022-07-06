@@ -1,6 +1,7 @@
 var currentDate;
 var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 var timeblocksId = ["#nineOClock", "#tenOClock", "#elevenOClock", "#twelveOClock", "#oneOClock", "#twoOClock", "#threeOClock", "#fourOClock", "#fiveOClock"];
+var saveButton = document.querySelector(".saveBtn");
 var saveButton1 = document.querySelector("#saveButton1");
 var saveButton2 = document.querySelector("#saveButton2");
 var saveButton3 = document.querySelector("#saveButton3");
@@ -11,10 +12,6 @@ var saveButton7 = document.querySelector("#saveButton7");
 var saveButton8 = document.querySelector("#saveButton8");
 var saveButton9 = document.querySelector("#saveButton9");
 var schedule = new Array(9);
-console.log(schedule);
-
-schedule[0] = "hi";
-console.log(schedule);
 
 if (saveButton1) {
     saveButton1.addEventListener("click", saveInfo);
@@ -51,7 +48,6 @@ if (saveButton8) {
 if (saveButton9) {
     saveButton9.addEventListener("click", saveInfo);
 }
-// $(saveButton).click(saveInfo()); ?
 
 // Displays current date at top
 function displayDate () {
@@ -96,15 +92,12 @@ function coloringTimeblock () {
     }
 }
 
-
-// Make a function about local storage for text area and functionable save button
-// If they click the save button, take the save button within that element and 
-
 // function getPreviousInfo() {
 
 //     // Grabs the existing textarea's text
-//     var eventInfo = localStorage.getItem("event");
-//     var time = localStorage.getItem("time");
+//     var 
+//     // var eventInfo = localStorage.getItem("event");
+//     // var time = localStorage.getItem("time");
 
 //     if (!eventInfo || !time) {
 //         return;
@@ -113,14 +106,42 @@ function coloringTimeblock () {
 //     time.textContent = eventInfo;
     
 // }
-
+// console.log();
 // TODO: Add textarea.value and textarea.id into local storage
+
+
 function saveInfo (event) {
     var buttonParent = $(this).parent()[0]; //article
     var textarea = buttonParent.querySelector("textarea");
 
-    localStorage.setItem("event", textarea.value);
-    localStorage.setItem("time", textarea.id);
+
+
+    var textareaContent = {
+        event: textarea.value,
+        time: textarea.id
+    };
+    console.log(textareaContent);
+    // Grabs all of the textarea elements
+    var textareaElements = document.getElementsByTagName("textarea");
+    // console.log(textareaElements[0].id);
+    for (var i = 0; i < textareaElements.length; i++) {
+        if (textareaContent.time === textareaElements[i].id) {
+            schedule[i] = textareaContent;
+            localStorage.setItem("events", JSON.stringify(schedule));
+        }
+    }
+
+
+}
+
+displayDate();
+coloringTimeblock();
+
+    // schedule[] = textareaContent;
+
+    // schedule [9AM, ]
+    // localStorage.setItem("event", textarea.value);
+    // localStorage.setItem("time", textarea.id);
 
     // var id = textarea.id;
     // console.log(value);
@@ -130,8 +151,15 @@ function saveInfo (event) {
     // console.log(this);
     // console.log($(this));
     // console.log($(this).parent()[0]);
-}
 
-displayDate();
-coloringTimeblock();
 // getPreviousInfo();
+
+// Make a function about local storage for text area and functionable save button
+// If they click the save button, take the save button within that element and 
+
+
+
+
+// if (saveButton) {
+    //     saveButton.addEventListener("click", saveInfo);
+    // }
