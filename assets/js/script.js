@@ -11,7 +11,6 @@ var saveButton6 = document.querySelector("#saveButton6");
 var saveButton7 = document.querySelector("#saveButton7");
 var saveButton8 = document.querySelector("#saveButton8");
 var saveButton9 = document.querySelector("#saveButton9");
-var schedule = new Array(9);
 
 if (saveButton1) {
     saveButton1.addEventListener("click", saveInfo);
@@ -92,10 +91,11 @@ function coloringTimeblock () {
     }
 }
 
+
 // function getPreviousInfo() {
 
 //     // Grabs the existing textarea's text
-//     var 
+//     localStorage.getItem();
 //     // var eventInfo = localStorage.getItem("event");
 //     // var time = localStorage.getItem("time");
 
@@ -106,32 +106,47 @@ function coloringTimeblock () {
 //     time.textContent = eventInfo;
     
 // }
-// console.log();
+console.log();
 // TODO: Add textarea.value and textarea.id into local storage
 
 
 function saveInfo (event) {
-    var buttonParent = $(this).parent()[0]; //article
+
+    // Grabs the text area within the same container
+    var buttonParent = $(this).parent()[0];
     var textarea = buttonParent.querySelector("textarea");
 
+    
+    var schedule = JSON.parse(localStorage.getItem("contents"));
 
+    if (schedule === null) {
+        schedule = new Array(9);
+    }
+    // } else {
+    //     for (var i = 0; i < schedule.length; i++) {
+    //         if (schedule[i] !== null) {
+    //             localStorage.getItem("contents");
+    //         }
+    //     }
+    // }
 
     var textareaContent = {
-        event: textarea.value,
+        textEvent: textarea.value,
         time: textarea.id
     };
-    console.log(textareaContent);
+
     // Grabs all of the textarea elements
     var textareaElements = document.getElementsByTagName("textarea");
-    // console.log(textareaElements[0].id);
+
+    // Loops through the textareaElements
     for (var i = 0; i < textareaElements.length; i++) {
+
+        // If the localStorage's id matches the timeblock's id, then
         if (textareaContent.time === textareaElements[i].id) {
             schedule[i] = textareaContent;
-            localStorage.setItem("events", JSON.stringify(schedule));
+            localStorage.setItem("contents", JSON.stringify(schedule));
         }
     }
-
-
 }
 
 displayDate();
