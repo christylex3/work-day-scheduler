@@ -92,15 +92,30 @@ function coloringTimeblock () {
     }
 }
 
-// Calls the function, coloringTimeblock, every second to update timeblock's colors
-function updatingTimeblocks () {
-    var timeInterval = setInterval(function() {
-        coloringTimeblock();
-    }, 1000); 
+// // Calls the function, coloringTimeblock, every second to update timeblock's colors?
+// function updatingTimeblocks () {
+//     var timeInterval = setInterval(function() {
+//         coloringTimeblock();
+//     }, 1000); 
+// }
+
+function getPreviousInfo() {
+
+    var test = JSON.parse(localStorage.getItem("contents"));
+    var textareaElements = document.getElementsByTagName("textarea");
+
+    for (var i = 0; i < test.length; i++) {
+
+        if (test[i] !== null && test[i].time === textareaElements[i].id) {
+            textareaElements[i].value = test[i].textEvent;
+        }
+
+        
+    }
+
+    
+    
 }
-
-// function getPreviousInfo() {
-
 //     // Grabs the existing textarea's text
 //     localStorage.getItem();
 //     // var eventInfo = localStorage.getItem("event");
@@ -122,20 +137,11 @@ function saveInfo (event) {
     var textarea = buttonParent.querySelector("textarea");
 
     // localStorage - how to grab previous info
-
-
-
-    for (var i = 0; i < schedule.length; i++) {
-        if (schedule[i] !== null) {
-            schedule = JSON.parse(localStorage.getItem("contents"));
-
-        }
-    }
     // var schedule = JSON.parse(localStorage.getItem("contents"));
 
-    // if (schedule === null) {
-    //     schedule = new Array(9);
-    // }
+    if (schedule === null) {
+        schedule = new Array(9);
+    }
     var textareaContent = {
         textEvent: textarea.value,
         time: textarea.id
@@ -150,10 +156,12 @@ function saveInfo (event) {
         // If the localStorage's id matches the timeblock's id, then
         if (textareaContent.time === textareaElements[i].id) {
             schedule[i] = textareaContent;
-            localStorage.setItem("contents", JSON.stringify(schedule));
         }
     }
+    localStorage.setItem("contents", JSON.stringify(schedule));
 }
+
+// function 
 
 displayDate();
 coloringTimeblock();
@@ -173,7 +181,7 @@ coloringTimeblock();
     // console.log($(this));
     // console.log($(this).parent()[0]);
 
-// getPreviousInfo();
+getPreviousInfo();
 
 // Make a function about local storage for text area and functionable save button
 // If they click the save button, take the save button within that element and 
