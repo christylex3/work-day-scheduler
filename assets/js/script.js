@@ -10,6 +10,11 @@ var saveButton6 = document.querySelector("#saveButton6");
 var saveButton7 = document.querySelector("#saveButton7");
 var saveButton8 = document.querySelector("#saveButton8");
 var saveButton9 = document.querySelector("#saveButton9");
+var schedule = new Array(9);
+console.log(schedule);
+
+schedule[0] = "hi";
+console.log(schedule);
 
 if (saveButton1) {
     saveButton1.addEventListener("click", saveInfo);
@@ -51,8 +56,10 @@ if (saveButton9) {
 // Displays current date at top
 function displayDate () {
 
-    // Formats currentDate to be "day of week, Month date of month" and appends this to the element with an ID of "currentDay"
+    // Formats currentDate to be "day of week, Month date of month"
     currentDate = moment().format("dddd, MMMM Do");
+
+    // Appends currentDate to the element with an ID of "currentDay"
     $("#currentDay").text(currentDate);
 }
 
@@ -93,24 +100,38 @@ function coloringTimeblock () {
 // Make a function about local storage for text area and functionable save button
 // If they click the save button, take the save button within that element and 
 
+// function getPreviousInfo() {
+
+//     // Grabs the existing textarea's text
+//     var eventInfo = localStorage.getItem("event");
+//     var time = localStorage.getItem("time");
+
+//     if (!eventInfo || !time) {
+//         return;
+//     }
+
+//     time.textContent = eventInfo;
+    
+// }
+
 // TODO: Add textarea.value and textarea.id into local storage
 function saveInfo (event) {
-    console.log(this);
-    console.log($(this));
-    // console.log(event);
-    console.log($(this).parent()[0]);
-
-
     var buttonParent = $(this).parent()[0]; //article
     var textarea = buttonParent.querySelector("textarea");
-    console.log(textarea);
 
-    var value = textarea.value;
-    console.log(value);
+    localStorage.setItem("event", textarea.value);
+    localStorage.setItem("time", textarea.id);
 
-    var id = textarea.id;
-    console.log(id);
+    // var id = textarea.id;
+    // console.log(value);
+    // console.log(id);
+    // var textarea = buttonParent.querySelector("textarea");
+    // var value = textarea.value;
+    // console.log(this);
+    // console.log($(this));
+    // console.log($(this).parent()[0]);
 }
 
 displayDate();
 coloringTimeblock();
+// getPreviousInfo();
