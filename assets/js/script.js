@@ -76,7 +76,7 @@ function coloringTimeblock () {
         }
 
         // If the current hour does equate to the timeblock's hour, set timeblock as "present"
-        if (currentHour === hours[i]) {
+        if (currentHour == hours[i]) {
             timeblock.classList.add("present");
             timeblock.classList.remove("past");
             timeblock.classList.remove("future");
@@ -116,20 +116,16 @@ function saveInfo (event) {
     var buttonParent = $(this).parent()[0];
     var textarea = buttonParent.querySelector("textarea");
 
-    
-    var schedule = JSON.parse(localStorage.getItem("contents"));
+    for (var i = 0; i < schedule.length; i++) {
+        if (schedule[i] !== null) {
+            schedule = JSON.parse(localStorage.getItem("contents"));
+        }
+    }
+    // var schedule = JSON.parse(localStorage.getItem("contents"));
 
     if (schedule === null) {
         schedule = new Array(9);
     }
-    // } else {
-    //     for (var i = 0; i < schedule.length; i++) {
-    //         if (schedule[i] !== null) {
-    //             localStorage.getItem("contents");
-    //         }
-    //     }
-    // }
-
     var textareaContent = {
         textEvent: textarea.value,
         time: textarea.id
