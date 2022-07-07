@@ -1,7 +1,13 @@
+// Variable that holds the current date of the day
 var currentDate;
+
+// Array that holds the hours from 9AM to 5PM by military time
 var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
+
+// Array that holds the timeblock's IDs
 var timeblocksId = ["#nineOClock", "#tenOClock", "#elevenOClock", "#twelveOClock", "#oneOClock", "#twoOClock", "#threeOClock", "#fourOClock", "#fiveOClock"];
-// var saveButton = document.querySelector(".saveBtn");
+
+// Variables that hold the specified element by ID
 var saveButton1 = document.querySelector("#saveButton1");
 var saveButton2 = document.querySelector("#saveButton2");
 var saveButton3 = document.querySelector("#saveButton3");
@@ -13,6 +19,7 @@ var saveButton8 = document.querySelector("#saveButton8");
 var saveButton9 = document.querySelector("#saveButton9");
 var schedule = new Array(9);
 
+// Adds "click" event listener to each save buttons
 if (saveButton1) {
     saveButton1.addEventListener("click", saveInfo);
 }
@@ -62,21 +69,21 @@ function displayDate () {
 // Marking timeblocks as "past", "present", or "future"
 function coloringTimeblock () {
 
-    // Variable that stores the current hour by military time
+    // Variable that stores the current hour (military time style)
     var currentHour = moment().hour();
 
     // Loops through each timeblock 
     for (var i = 0; i < hours.length; i++) {
         var timeblock = document.querySelector(timeblocksId[i]);
         
-        // If the current hour does not equate to the timeblock's hour, set timeblock as "past"
+        // If the current hour is not equal to the timeblock's hour, set timeblock as "past"
         if (currentHour !== hours[i]) {
             timeblock.classList.add("past");
             timeblock.classList.remove("present");
             timeblock.classList.remove("future");
         }
 
-        // If the current hour does equate to the timeblock's hour, set timeblock as "present"
+        // If the current hour does equal to the timeblock's hour, set timeblock as "present"
         if (currentHour == hours[i]) {
             timeblock.classList.add("present");
             timeblock.classList.remove("past");
@@ -92,42 +99,23 @@ function coloringTimeblock () {
     }
 }
 
-// // Calls the function, coloringTimeblock, every second to update timeblock's colors?
-// function updatingTimeblocks () {
-//     var timeInterval = setInterval(function() {
-//         coloringTimeblock();
-//     }, 1000); 
-// }
-
+// Grabs the previous saved info and displays them on the timeblock they were saved on
 function getPreviousInfo() {
 
+    
     var test = JSON.parse(localStorage.getItem("contents"));
     var textareaElements = document.getElementsByTagName("textarea");
 
-    for (var i = 0; i < test.length; i++) {
+    if (test === null) {
+        return;
+    }
 
+    for (var i = 0; i < test.length; i++) {
         if (test[i] !== null && test[i].time === textareaElements[i].id) {
             textareaElements[i].value = test[i].textEvent;
         }
-
-        
     }
-
-    
-    
 }
-//     // Grabs the existing textarea's text
-//     localStorage.getItem();
-//     // var eventInfo = localStorage.getItem("event");
-//     // var time = localStorage.getItem("time");
-
-//     if (!eventInfo || !time) {
-//         return;
-//     }
-
-//     time.textContent = eventInfo;
-    
-// }
 
 // TODO: Add textarea.value and textarea.id into local storage
 function saveInfo (event) {
@@ -136,12 +124,6 @@ function saveInfo (event) {
     var buttonParent = $(this).parent()[0];
     var textarea = buttonParent.querySelector("textarea");
 
-    // localStorage - how to grab previous info
-    // var schedule = JSON.parse(localStorage.getItem("contents"));
-
-    if (schedule === null) {
-        schedule = new Array(9);
-    }
     var textareaContent = {
         textEvent: textarea.value,
         time: textarea.id
@@ -161,34 +143,7 @@ function saveInfo (event) {
     localStorage.setItem("contents", JSON.stringify(schedule));
 }
 
-// function 
-
+// Calls the following functions
 displayDate();
 coloringTimeblock();
-
-    // schedule[] = textareaContent;
-
-    // schedule [9AM, ]
-    // localStorage.setItem("event", textarea.value);
-    // localStorage.setItem("time", textarea.id);
-
-    // var id = textarea.id;
-    // console.log(value);
-    // console.log(id);
-    // var textarea = buttonParent.querySelector("textarea");
-    // var value = textarea.value;
-    // console.log(this);
-    // console.log($(this));
-    // console.log($(this).parent()[0]);
-
 getPreviousInfo();
-
-// Make a function about local storage for text area and functionable save button
-// If they click the save button, take the save button within that element and 
-
-
-
-
-// if (saveButton) {
-    //     saveButton.addEventListener("click", saveInfo);
-    // }
