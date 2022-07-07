@@ -17,9 +17,11 @@ var saveButton6 = document.querySelector("#saveButton6");
 var saveButton7 = document.querySelector("#saveButton7");
 var saveButton8 = document.querySelector("#saveButton8");
 var saveButton9 = document.querySelector("#saveButton9");
+
+// Array that is created with length of 9
 var schedule = new Array(9);
 
-// Adds "click" event listener to each save buttons
+// When save buttons are pressed, call saveInfo()
 if (saveButton1) {
     saveButton1.addEventListener("click", saveInfo);
 }
@@ -99,40 +101,44 @@ function coloringTimeblock () {
     }
 }
 
-// Grabs the previous saved info and displays them on the timeblock they were saved on
+// Grabs the timeblock's saved info and displays them accordingly on timeblock they were saved on
 function getPreviousInfo() {
 
-    
-    var test = JSON.parse(localStorage.getItem("contents"));
+    // Variable that holds the saved contents from the local storage
+    var savedContents = JSON.parse(localStorage.getItem("contents"));
     var textareaElements = document.getElementsByTagName("textarea");
 
-    if (test === null) {
+    // If there is nothing in the local storage, return
+    if (savedContents === null) {
         return;
     }
 
-    for (var i = 0; i < test.length; i++) {
-        if (test[i] !== null && test[i].time === textareaElements[i].id) {
-            textareaElements[i].value = test[i].textEvent;
+    // Loops through the savedContents
+    for (var i = 0; i < savedContents.length; i++) {
+
+        // If the index of the savedContents is not null AND the index's ID matches the textarea's ID,
+        // then let the textarea's content have the same value as savedContents
+        if (savedContents[i] !== null && savedContents[i].time === textareaElements[i].id) {
+            textareaElements[i].value = savedContents[i].textEvent;
         }
     }
 }
 
-// TODO: Add textarea.value and textarea.id into local storage
+// Saves the textarea's value by storing it into local storage
 function saveInfo (event) {
 
-    // Grabs the text area within the same container
+    // Variable that holds the text area within the same container
     var buttonParent = $(this).parent()[0];
     var textarea = buttonParent.querySelector("textarea");
 
+    // Object variable that holds the textarea's value as textEvent and textarea's id as time
     var textareaContent = {
         textEvent: textarea.value,
         time: textarea.id
     };
 
-    // Grabs all of the textarea elements
+    // Grabs all of the textarea elements and loops through them
     var textareaElements = document.getElementsByTagName("textarea");
-
-    // Loops through the textareaElements
     for (var i = 0; i < textareaElements.length; i++) {
 
         // If the localStorage's id matches the timeblock's id, then
