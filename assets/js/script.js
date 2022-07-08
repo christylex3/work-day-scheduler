@@ -141,7 +141,8 @@ function saveInfo (event) {
     var textareaElements = document.getElementsByTagName("textarea");
     for (var i = 0; i < textareaElements.length; i++) {
 
-        // If the localStorage's id matches the timeblock's id, then
+        // If the localStorage's id matches the timeblock's id, 
+        // then set that timeblock's value as the one from the local storage
         if (textareaContent.time === textareaElements[i].id) {
             schedule[i] = textareaContent;
         }
