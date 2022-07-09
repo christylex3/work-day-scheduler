@@ -15,7 +15,6 @@ textarea {
   color: #000000;
   border-left: 1px solid black;
   border-bottom: 1px solid white;
-  /* padding: 10px; */
 }
 
 .jumbotron {
@@ -29,11 +28,6 @@ textarea {
 .description {
   white-space: pre-wrap;
 }
-
-/* .time-block {
-  position: center;
-  border-radius: 15px;
-} */
 
 .row {
   white-space: pre-wrap;
@@ -60,8 +54,6 @@ textarea {
   background-color: #77dd77;
 }
 
-
-/* Need to refactor later */
 .saveBtn {
   border: none;
   border-left: 1px solid;
